@@ -1,24 +1,33 @@
 import logo from './logo.svg';
-import './App.css';
+import logo1 from './logo1.svg'
+import { useNavigate } from "react-router-dom";
 
+import SignInPage from './components/SignInpage/SignInPage';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
+import './App.css';
+import ShowShops from './components/ShowShops/ShowShops'
+import LoginPage from './components/LoginPage/LoginPage';
+import ShopProducts from './components/ShopProducts/ShopProducts';
+import SearchShops from './components/SearchShops/SearchShops'
+import Shop from './components/Shop/Shop';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<SignInPage />}/>
+      <Route exact path="/Login" element={<LoginPage />}/>
+      <Route exact path="/ShowShops" element = {<ShowShops /> }/>
+      <Route exact path="/ShopProducts" element = {<ShopProducts /> }/>
+      <Route exact path="/SearchShops" element = {<SearchShops /> }/>
+      <Route path="/Shop/:id" element = { <Shop /> } />
+    </Routes>
+    </BrowserRouter>
+    </>
+   /* <>
+    <div className="landingPage"> 
+      <SignInPage />
+    </div**/
   );
 }
 

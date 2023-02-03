@@ -1,0 +1,19 @@
+.signupformdetails{
+    position: absolute;
+    left:50%;
+    top:50%;
+    right: 50%;
+    bottom: 50%;
+    display: flex;
+    background-color: whitesmoke;
+    flex-direction: column;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    
+  }
+  .signupform{
+    background-color: aqua;
+  }

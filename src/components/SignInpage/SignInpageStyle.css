@@ -1,0 +1,33 @@
+/*.signInForm{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}*/
+
+.signInFormDivs{
+    height: 450px;
+    width: 300px;
+
+    background-color: black;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    
+    position: absolute;
+    top:0px;left:0px;right: 0px;bottom: 0px;margin:auto;
+}
+
+.signInFormDivs input {
+    width: 90%;
+    height: 20%;
+    border-radius: 3px;
+}
+
+.signInFormDivs input:focus{
+    border: 10px solid blue;
+}
