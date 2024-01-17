@@ -21,14 +21,20 @@ const SignInPage = () => {
     console.log("handelsubmiyy")
     if(password===password2){ 
     console.log("HI")
-    
-    const expressApi =  axios.post("http://localhost:8080/signin",{
+    const url = "http://localhost:8000/api/auth/register"
+    console.log(url)
+
+    const expressApi =  axios.post(url,{
       firstName:firstName,
       lastName:lastName,
       phoneNumber:phoneNumber,
       email:email,
       password:password
-    }) 
+    }).then((responce)=>{
+      localStorage.setItem('user_Id', responce.data._id )
+      console.log('user_Id', localStorage.getItem('user_Id'))
+    })
+
     console.log(expressApi)
     navigate("/Login")
    

@@ -4,9 +4,7 @@
     justify-content: space-between;
     padding: 1rem;
   }
-.navbar {
-  position: sticky;
-}
+  
   .product-display-image {
     width: 30%;
     height: auto;

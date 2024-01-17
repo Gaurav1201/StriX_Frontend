@@ -1,0 +1,5 @@
+.product-details{
+    display: flex;
+    gap:28px;
+    flex-direction: column;
+}

@@ -16,28 +16,37 @@ import {useNavigate} from "react-router-dom"
   )
 }*/
 function LoginPage(){
-  var [firstName,setFirstName] = useState("");
-  var [lastName, setLastName] = useState("");
-  var [phoneNumber, setPhoneNumber]=useState(0);
-  var [email,setEmail] = useState("");
+  
+  var [userName, setUserName]=useState();
   var [password,setPassword] = useState("");
-  var [password2,setPassword2] = useState("");
+  
 
-  function handleSubmit(){
-    const expressApi =  axios.post("http://localhost:8080/login",{
-        phoneNumber:phoneNumber,
+  function handleSubmit(e){
+   alert('kml/l')
+    const expressApi =  axios.post("http://localhost:8000/api/auth/login",{
+      userName : userName,
         password:password
-      })  
+      }).then((responce)=>{
+        console.log(responce.data)
+        navigate('/')
+        // if(responce.data=='user exists'){
+        //   navigate('/Signup')
+        // }
+      }).catch((err)=>{console.log(err)})
+      console.log(expressApi)
   }
+  const navigate = useNavigate();
     return(
         <>
-    <div className='LoginPage' onSubmit={handleSubmit}>
+    <div className='LoginPage' onSubmit={()=>handleSubmit()}>
       <form className='LoginPageDivs'>
         <h1 style={{color:"Blue"}}>Login</h1>
-        <input onChange={(e)=>setPhoneNumber(e.target.value)} type="number" required placeholder='Enter Mobile Number'/>
+        <p>{localStorage.getItem('user_Id')}</p>
+        <input onChange={(e)=>setUserName(e.target.value)} type="text" required placeholder='Enter userName'/>
         <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder='Enter Password'/>
         <button type='submit' value="Create Account">Login</button>
       </form>
+      <h1>{userName} {password}</h1>
     </div>
         </>
     );
