@@ -14,6 +14,24 @@ const AddProduct = (props) => {
     }
     const SaveProduct = () =>{
 
+      const formData = new FormData();
+    formData.append('shopId', localStorage.getItem('shopID'));
+    formData.append('productName', productName);
+    formData.append('productPrice', productPrice);
+    formData.append('productStock', stock);
+    formData.append('productDescription', pDescription);
+    formData.append('productImage', productImage);
+
+    const response = await axios.post(
+      'http://localhost:8000/api/shops/addProduct',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
       const data = axios.post('http://localhost:8000/api/shops/addProduct',{
         shopId: localStorage.getItem('shopID'),
         productName : productName,
@@ -30,18 +48,19 @@ const AddProduct = (props) => {
     const navigate = useNavigate();
     return (
     <>
-    <div>AddProduct</div>
+    <div>Add Product</div>
     <h1>{props.id}</h1>
     <p>{localStorage.getItem('shopID')}</p>
     <div className='product-details'>
       <form onSubmit={()=> SaveProduct()}>
-        <input onChange={(e)=>setProductName(e.target.value)}placeholder = 'enter name'type='text'/>
-        <input onChange={(e)=>setPDescription(e.target.value)}placeholder='enter description'/>
+        <input onChange={(e)=>setProductName(e.target.value)} placeholder = 'Enter product name'type='text'/>
+        <input onChange={(e)=>setPDescription(e.target.value)} placeholder='Enter description'/>
 
-        <input onChange={(e)=>setProductPrice(e.target.value)}type='number' placeholder='price' />
-        <input type  ='number' placeholder='stonk' value={stock}/>
+        <input onChange={(e)=>setProductPrice(e.target.value)} type='number' placeholder='price' />
+        <input type  ='number' placeholder='stock' value={stock}/>
+
         <button onClick={()=>Addstock()}>Add Stock</button>
-        <h1>skdh</h1>
+       
         <input type='submit' />
         </form>
         {/* //</div>p>{}</p>

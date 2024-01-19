@@ -64,7 +64,7 @@ function LandingPage() {
     </div>  
     
       <footer className="App-footer">
-        <p>&copy; Your Company Name</p>
+        <p>&copy; StriX</p>
       </footer>
     </div>
     </>

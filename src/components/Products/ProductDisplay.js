@@ -27,14 +27,24 @@ function ProductDisplay(props) {
     //         );
     //       }
 
-    const handleClick = (e) =>{
+    const handleAddition = (e) =>{
         setAddedToCart(true)
         props.AddToCart(props.element)
         console.log('The product display page ',typeof(props.element),props.element)
     }
-    const handleremove=()=>{
+    const handleRemoval=()=>{
         props.removeFromCart(props.element._id)
         setAddedToCart(false)
+    }
+
+    const incrementProduct = (productKey) =>{
+      console.log(productkey)
+      props.incrementProduct(productKey);
+      props.decrementProduct(productKey);
+    }
+    const decrementProduct = (productKey) =>{
+      console.log(productkey)
+      props.decrementProduct(productKey);
     }
      const [inCart, setInCart] = useState([]);
      const [addedToCart, setAddedToCart] = useState(false);
@@ -44,11 +54,11 @@ function ProductDisplay(props) {
           <p>Product Name:</p> <h1>{props.element.productName}</h1>
           <p>Product Cost: {props.element.productPrice}</p>
           {addedToCart ? <div>
-            <button>+</button>
-            <button>-</button>
-            <button onClick={()=>handleremove()}>Remove From cart</button>
+            <button onClick={()=> incrementProduct(props.key) }>+</button>
+            <button onClick={()=> decrementProduct(props.key)}>-</button>
+            <button onClick={()=>handleRemoval()}>Remove From cart</button>
           </div>
-          :<button onClick={()=>handleClick()}>Add To cart</button> }
+          :<button onClick={()=>handleAddition()}>Add To cart</button> }
           </div>
   )
 }

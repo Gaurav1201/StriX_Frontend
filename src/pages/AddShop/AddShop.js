@@ -13,6 +13,8 @@ function AddShop() {
       shopName:shopName,
       shopLocation:shopLocation,
       ownerEmail:email,
+      shopCords:location, // coordinates of the shop
+      shopDesrption:shopDesrption,
       ownerId: localStorage.getItem('user_Id')
     }).then((responce)=>{
       console.log('shop id --',responce.data)
@@ -34,6 +36,19 @@ function AddShop() {
    //63fdd5f3f8d6ed94d76b3675 - AddSHop
    //63fdd4a8f8d6ed94d76b3671 -- AddProducy
     }
+
+    function detectLocation(){
+        
+      navigator.geolocation.getCurrentPosition(position => {
+          setLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          });
+          console.log(position.coords.latitude);
+        });
+        
+        setDetectedLocation(true)
+  } 
     
   
     const [value, setValue, remove] = useLocalStorage('shopID', '1');
@@ -44,22 +59,25 @@ function AddShop() {
     const [shopId, setShopID] = useState('');
     const [email, setEmail] = useState('');
     const [location, setLocation] = useState(false);
-    const [detetctedLocation,setDetectedLocation] = useState(false)
+    const [detetctedLocation,setDetectedLocation] = useState(false);
     const navigate = useNavigate();
     const [components, setComponents] = useState([]);
+    const [shopDesrption, setShopDesrption] = useState("The shop speaks for itself ;)");
 
    return (
     <>
-    <div>AddShop</div>
+    <div>ADD YOUR SHOP</div>
     
 
     <form onSubmit={handleSubmit} className='add-shop'>
       <input onChange={(e)=>setShopName(e.target.value)} type='text' placeholder="name of the shop" />
-      <input  onChange={(e)=>setShopLocation(e.target.value)}type='text' placeholder="location of the shop(city)" />
+      <input  onChange={(e)=>setShopLocation(e.target.value)}type='text' placeholder="location of the shop(city)" /><span> <button onClick={ ()=>detectLocation()}>Auto Detect</button> <h6> {detectedLocation ? <div>  Latitude: {location.lat} Longitude: {location.lng} </div>: ""}</h6></span>
       <input  onChange={(e)=>setEmail(e.target.value)}type='email' placeholder='enter email-id' />
+      <input  onChange={(e)=>setShopDesrption(e.target.value)}type='text' maxlength="100" placeholder='Tell us about your business' />
+
       <input type='submit' name='next'value='next' />
     </form>
-    <p>{shopId}</p>
+    <p>Generated Shop ID: {shopId}</p>
     <button onClick={()=> navigate('/AddProduct')}>Add Product</button>
     </>
   )
