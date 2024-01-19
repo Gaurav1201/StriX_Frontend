@@ -68,7 +68,7 @@ function Shop() {
     });
   };
   
-  const fetchData = () => {
+  const saveCart = () => {
     console.log('shop id', id)
     axios.get(`http://localhost:8000/api/shops/getdetails/${id}`)
       .then(response => {
