@@ -114,7 +114,7 @@ export default function MUIShop(props) {
         <CardContent>
           <Typography paragraph>Method:</Typography>
           <Typography paragraph>
-            Shop Descrption is here by the shop owner or others
+            Shop Descrption is shown here which is provided by the shop owner or others.
           </Typography>
           
         </CardContent>

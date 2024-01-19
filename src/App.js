@@ -51,6 +51,15 @@ function App() {
         "rating":5,
         "contents":[{"name":"onion","details":{"price":100,"rating":4,"description":"nothng","id":1}},{"name":"margherita","details":{"price":18,"rating":2,"description":"jdh","id":2}}]
     }
+   ,
+      {
+        "id":4,
+        "BusinessType":"food",
+        "location":"california",
+        "BusinessName":"Pizza Hut",
+        "rating":5,
+        "contents":[{"name":"onion","details":{"price":100,"rating":4,"description":"nothng","id":1}},{"name":"margherita","details":{"price":18,"rating":2,"description":"jdh","id":2}}]
+    }
     
     ]
   return (
