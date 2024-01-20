@@ -91,7 +91,7 @@ export default function MUIShop(props) {
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This shop is 5km from this location
+          This shop is 58km from this location
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
