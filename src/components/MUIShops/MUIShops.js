@@ -67,6 +67,11 @@ export default function MUIShop(props) {
   };
 
   return (
+    <>
+      <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+    
     <Card sx={{ maxWidth: 345 }}>
       <Link to={`/Shop/${props.element._id}`}><CardHeader
         avatar={
@@ -120,5 +125,6 @@ export default function MUIShop(props) {
         </CardContent>
       </Collapse>
     </Card>
+    </>
   );
 }

@@ -38,12 +38,12 @@ function ProductDisplay(props) {
     }
 
     const incrementProduct = (productKey) =>{
-      console.log(productkey)
+      console.log(productKey)
       props.incrementProduct(productKey);
       props.decrementProduct(productKey);
     }
     const decrementProduct = (productKey) =>{
-      console.log(productkey)
+      console.log(productKey)
       props.decrementProduct(productKey);
     }
      const [inCart, setInCart] = useState([]);

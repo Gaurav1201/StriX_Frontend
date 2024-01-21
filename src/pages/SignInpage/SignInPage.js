@@ -55,7 +55,7 @@ const SignInPage = () => {
         <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder='Enter Password'/>
         <input onChange={(e)=>setPassword2(e.target.value)} type="password" required placeholder='Confirm Password'/>
         <button type='submit' value="Create Account">Create Account</button>
-        <p style={{color:"blue"}}>Already have an account?<a href='#'>Login</a></p>
+        <p style={{color:"blue"}}>Already have an account?<a href='/Login'>Login</a></p>
       </form>
 
     </div>
