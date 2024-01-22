@@ -12,6 +12,7 @@ function Shop() {
   const [products, setProducts] = useState([{}]);
   const [shopDetails, setShopDetails] = useState({ ShopName: 'MacDonalds', ShopDescription: 'A fast food restaurant with a weired looking clown ' });
   const [cart, setCart] = useState({});
+  const [productDetails, setProductDetails] = useState({});
 
   // const AddToCart = (element) =>{
   //   console.log('cart ', element)
@@ -44,30 +45,30 @@ function Shop() {
       if (prevCart[productId]) {
         return { ...prevCart, [productId]: prevCart[productId] + 1 };
       }
-  
+
       // If the product is not in the cart, add it with a quantity of 1
       return { ...prevCart, [productId]: 1 };
     });
   };
-  
+
   const decrementProduct = (productId) => {
     setCart((prevCart) => {
       // If the product is in the cart and the quantity is greater than 1, decrement its quantity
       if (prevCart[productId] && prevCart[productId] > 1) {
         return { ...prevCart, [productId]: prevCart[productId] - 1 };
       }
-  
+
       // If the product is in the cart and the quantity is 1, remove it from the cart
       if (prevCart[productId] === 1) {
         const { [productId]: _, ...rest } = prevCart;
         return rest;
       }
-  
+
       // If the product is not in the cart, do nothing
       return prevCart;
     });
   };
-  
+
   const saveCart = () => {
     console.log('shop id', id)
     axios.get(`http://localhost:8000/api/shops/getdetails/${id}`)
@@ -82,7 +83,18 @@ function Shop() {
         console.error(error);
       });
   }
-
+  const getDetails = (event) => {
+    console.log('shop id', id)
+    axios.get(`http://localhost:8000/api/shops/getdetails/${id}`)
+      .then(response => {
+        setProductDetails(response.data);
+        setLoading(false)
+      })
+      .catch(error => {
+        console.error(error);
+      });
+      event.stopPropagation();
+  }
   const fetchData = () => {
     console.log('shop id', id)
     axios.get(`http://localhost:8000/api/shops/getdetails/${id}`)
@@ -118,13 +130,13 @@ function Shop() {
         </div>
 
         <div>
-          <button onClick = {saveCart}>Buy</button>
+          <button onClick={saveCart}>Buy</button>
         </div>
 
         <ul>
           {
             products.map((element) => (
-              <ProductDisplay key={element._id} element={element} AddToCart={AddToCart} removeFromCart={removeFromCart} incrementProduct={incrementProduct} decrementProduct={decrementProduct} />
+              <ProductDisplay key={element._id} element={element} AddToCart={AddToCart} removeFromCart={removeFromCart} incrementProduct={incrementProduct} decrementProduct={decrementProduct} getDetails={getDetails} />
             ))
           }
         </ul>
@@ -140,6 +152,33 @@ function Shop() {
             ))
           }
         </ul>
+      </div>
+      <div>
+        <p>Product Information</p>
+        <div className="product-image">
+          <p>product image</p>
+        </div>
+        <div className='priceAndRating'>
+          <p>{productDetails}</p>
+          <p>{productDetails.rating}</p>
+        </div>
+        <div>
+          <div className='description'>
+            <p>{productDetails.description}</p>
+          </div>
+          <div className="tags">
+            <ul>
+              {list.map((element, index) => (
+
+                <div>
+                  <p>{element}</p>
+                </div>
+              ))}
+            </ul>
+
+            <p>tags</p>
+          </div>
+        </div>
       </div>
     </div>
   )

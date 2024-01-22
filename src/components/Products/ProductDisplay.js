@@ -50,7 +50,7 @@ function ProductDisplay(props) {
      const [addedToCart, setAddedToCart] = useState(false);
   return (
     
-        <div style={{"backgroundColor":"blue", "width":"200px"}}>
+        <div style={{"backgroundColor":"blue", "width":"200px"}} onClick={props.getDetails}>
           <p>Product Name:</p> <h1>{props.element.productName}</h1>
           <p>Product Cost: {props.element.productPrice}</p>
           {addedToCart ? <div>
