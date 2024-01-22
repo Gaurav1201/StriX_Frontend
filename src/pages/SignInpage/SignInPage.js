@@ -35,7 +35,8 @@ const SignInPage = () => {
     //   localStorage.setItem('user_Id', responce.data._id )
     //   console.log('user_Id', localStorage.getItem('user_Id'))
     // })
-    if(expressApi.data.isValid){
+    console.log(expressApi.data);
+    if(expressApi.data.isValid == true){
          localStorage.setItem('user_Id', expressApi.data._id )
          navigate("/Login");
     }else{
