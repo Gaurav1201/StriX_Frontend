@@ -12,7 +12,7 @@ const AddProduct = (props) => {
     setStock(stock1)
     
     }
-    const SaveProduct = () =>{
+    async function  SaveProduct  () {
 
       const formData = new FormData();
     formData.append('shopId', localStorage.getItem('shopID'));
@@ -20,7 +20,7 @@ const AddProduct = (props) => {
     formData.append('productPrice', productPrice);
     formData.append('productStock', stock);
     formData.append('productDescription', pDescription);
-    formData.append('productImage', productImage);
+   // formData.append('productImage', productImage);
 
     const response = await axios.post(
       'http://localhost:8000/api/shops/addProduct',

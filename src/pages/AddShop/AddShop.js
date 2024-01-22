@@ -71,7 +71,7 @@ function AddShop() {
 
     <form onSubmit={handleSubmit} className='add-shop'>
       <input onChange={(e)=>setShopName(e.target.value)} type='text' placeholder="name of the shop" />
-      <input  onChange={(e)=>setShopLocation(e.target.value)}type='text' placeholder="location of the shop(city)" /><span> <button onClick={ ()=>detectLocation()}>Auto Detect</button> <h6> {detectedLocation ? <div>  Latitude: {location.lat} Longitude: {location.lng} </div>: ""}</h6></span>
+      <input  onChange={(e)=>setShopLocation(e.target.value)}type='text' placeholder="location of the shop(city)" /><span> <button onClick={ ()=>detectLocation()}>Auto Detect</button> <h6> {detetctedLocation ? <div>  Latitude: {location.lat} Longitude: {location.lng} </div>: ""}</h6></span>
       <input  onChange={(e)=>setEmail(e.target.value)}type='email' placeholder='enter email-id' />
       <input  onChange={(e)=>setShopDesrption(e.target.value)}type='text' maxlength="100" placeholder='Tell us about your business' />
 

@@ -68,7 +68,7 @@ function Shop() {
     });
   };
   
-  const fetchData = () => {
+  const saveCart = () => {
     console.log('shop id', id)
     axios.get(`http://localhost:8000/api/shops/getdetails/${id}`)
       .then(response => {
@@ -113,12 +113,12 @@ function Shop() {
         </div>
 
         <div className='Banner'>
-          <h1>{shopDetails.shopName}</h1>
+          <h1>{shopDetails.ShopName}</h1>
           <p>{shopDetails.shopLocation}</p>
         </div>
 
         <div>
-          <button onClick = {handleSave}>Buy</button>
+          <button onClick = {saveCart}>Buy</button>
         </div>
 
         <ul>

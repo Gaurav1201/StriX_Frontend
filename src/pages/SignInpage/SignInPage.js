@@ -12,11 +12,11 @@ const SignInPage = () => {
   var [email,setEmail] = useState("");
   var [password,setPassword] = useState("");
   var [password2,setPassword2] = useState("");
-  
+  var [hasError, setHasError] = useState(false);
 
   //handle function
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
     e.preventDefault();
     console.log("handelsubmiyy")
     if(password===password2){ 
@@ -30,13 +30,19 @@ const SignInPage = () => {
       phoneNumber:phoneNumber,
       email:email,
       password:password
-    }).then((responce)=>{
-      localStorage.setItem('user_Id', responce.data._id )
-      console.log('user_Id', localStorage.getItem('user_Id'))
     })
-
+    // .then((responce)=>{
+    //   localStorage.setItem('user_Id', responce.data._id )
+    //   console.log('user_Id', localStorage.getItem('user_Id'))
+    // })
+    if(expressApi.data.isValid){
+         localStorage.setItem('user_Id', expressApi.data._id )
+         navigate("/Login");
+    }else{
+      setHasError(true);
+    }
     console.log(expressApi)
-    navigate("/Login")
+    
    
    
   }
@@ -55,11 +61,15 @@ const SignInPage = () => {
         <input onChange={(e)=>setPassword(e.target.value)} type="password" required placeholder='Enter Password'/>
         <input onChange={(e)=>setPassword2(e.target.value)} type="password" required placeholder='Confirm Password'/>
         <button type='submit' value="Create Account">Create Account</button>
-        <p style={{color:"blue"}}>Already have an account?<a href='#'>Login</a></p>
+        <p style={{color:"blue"}}>Already have an account?<a href='/Login'>Login</a></p>
       </form>
 
     </div>
-
+    {hasError && (
+          <div><h1>Something went wrong. Please try again later</h1>
+          <span><button onClick={() => setHasError(false)}>close</button></span>
+          </div>
+        )}
     </>
   );
 }
